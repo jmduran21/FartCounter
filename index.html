@@ -1,0 +1,77 @@
+<!--
+We want an app that has a counter, starting in 0, with 2 buttons:
+one to increment the counter and another to decrement it.
+The state of the counter should be saved in the local storage and persissted between page reloads.
+There should be an image on top of the 2 buttons, also a title.
+Styles and logic should be in the same file.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Counter App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            width: 200px;
+            height: 200px;
+            margin: 0 100px;
+            font-size: 56px;
+            cursor: pointer;
+            border-radius: 50%;
+            background-color: #fbc202;
+            border: none;
+
+        }
+        #counter {
+            font-size: 66px;
+            margin-bottom: 70px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Counter App</h1>
+    <img src="/header.jpeg" alt="Placeholder image">
+    <span id="counter">0</span>
+    <!-- POsition the 2 buttons next to each othe with inline styles using flex, stretched to the side margins-->
+    <div style="display: flex; justify-content: space-between;width: 100%;">
+        <button id="decrement">-</button>
+        <button id="increment">+</button>
+    </div>
+
+    <script>
+        const counter = document.getElementById('counter');
+        const increment = document.getElementById('increment');
+        const decrement = document.getElementById('decrement');
+
+        let count = localStorage.getItem('count') || 0;
+        counter.textContent = count;
+
+        increment.addEventListener('click', () => {
+            count++;
+            counter.textContent = count;
+            localStorage.setItem('count', count);
+        });
+
+        decrement.addEventListener('click', () => {
+            count--;
+            counter.textContent = count;
+            localStorage.setItem('count', count);
+        });
+    </script>
+</body>
+</html>
